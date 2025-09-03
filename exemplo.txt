@@ -1,0 +1,148 @@
+================================================================================
+⊙ SOLUCIONADOR SIMPLEX INTERATIVO ⊙
+================================================================================
+
+🎯 TIPO DO PROBLEMA:
+  1. Maximização (com restrições ≤)
+  2. Minimização (com restrições ≥)
+  Escolha o tipo de problema (1 ou 2): 1
+
+📝 Este programa resolve problemas de Programação Linear no formato:
+   MAXIMIZAR: Z = c₁x₁ + c₂x₂ + ... + cₙxₙ
+   SUJEITO A: a₁₁x₁ + a₁₂x₂ + ... ≤ b₁
+             ...
+             x₁, x₂, ... ≥ 0
+
+🔢 DEFININDO O PROBLEMA:
+  Quantas variáveis de decisão? 2
+  Quantas restrições? 2
+
+📈 FUNÇÃO OBJETIVO (Maximizar Z):
+  Digite os 2 coeficientes das variáveis:
+  Coeficiente de x1: 5
+  Coeficiente de x2: 3
+
+📋 RESTRIÇÕES:
+
+  Restrição 1:
+    Coeficiente de x1: 3
+    Coeficiente de x2: 5
+    Lado direito (≤): 15
+
+  Restrição 2:
+    Coeficiente de x1: 5
+    Coeficiente de x2: 2
+    Lado direito (≤): 10
+
+================================================================================
+🚀 INICIANDO O MÉTODO SIMPLEX
+================================================================================
+
+📌 FASE 1: CONSTRUÇÃO DO QUADRO INICIAL
+  • Adicionando variáveis de folga para converter ≤ em =
+  • Montando o quadro simplex inicial
+
+================================================================================
+🔄 Quadro inicial com variáveis de folga
+📊 QUADRO SIMPLEX - Iteração 0
+================================================================================
+Base |   x1   |   x2   |   s1   |   s2   |    RHS   |
+-----------------------------------------------------
+ s1  |   3.00 |   5.00 |   1.00 |   0.00 |    15.00 |
+ s2  |   5.00 |   2.00 |   0.00 |   1.00 |    10.00 |
+-----------------------------------------------------
+  Z   |  -5.00 |  -3.00 |   0.00 |   0.00 |     0.00 |
+================================================================================
+
+⏸️  Pressione Enter para continuar...
+
+📌 FASE 2: ITERAÇÕES DO MÉTODO SIMPLEX
+
+🔍 Iteração 1:
+  • Coluna pivô: 1 (menor valor negativo na linha Z: -5.00)
+
+  • Calculando razões (RHS / coef. coluna pivô):
+    Linha 1: 15.00 / 3.00 = 5.00
+    Linha 2: 10.00 / 5.00 = 2.00
+
+  • Linha pivô: 2 (menor razão positiva: 2.00)
+  • Elemento pivô: 5.00
+
+  • Realizando operação de pivoteamento:
+    1. Normalizando a linha pivô (Linha 2 /= 5.00)
+    2. Zerando outros elementos da coluna pivô
+       Linha 1 -= 3.00 × (Nova Linha 2)
+       Linha Z -= -5.00 × (Nova Linha 2)
+
+================================================================================
+🔄 Após pivoteamento na linha 2, coluna 1
+📊 QUADRO SIMPLEX - Iteração 1
+================================================================================
+Base |   x1   |   x2   |   s1   |   s2   |    RHS   |
+-----------------------------------------------------
+ s1  |   0.00 |   3.80 |   1.00 |  -0.60 |     9.00 |
+ x1  |   1.00 |   0.40 |   0.00 |   0.20 |     2.00 |
+-----------------------------------------------------
+  Z   |   0.00 |  -1.00 |   0.00 |   1.00 |    10.00 |
+================================================================================
+
+⏸️  Pressione Enter para continuar...
+
+🔍 Iteração 2:
+  • Coluna pivô: 2 (menor valor negativo na linha Z: -1.00)
+
+  • Calculando razões (RHS / coef. coluna pivô):
+    Linha 1: 9.00 / 3.80 = 2.37
+    Linha 2: 2.00 / 0.40 = 5.00
+
+  • Linha pivô: 1 (menor razão positiva: 2.37)
+  • Elemento pivô: 3.80
+
+  • Realizando operação de pivoteamento:
+    1. Normalizando a linha pivô (Linha 1 /= 3.80)
+    2. Zerando outros elementos da coluna pivô
+       Linha 2 -= 0.40 × (Nova Linha 1)
+       Linha Z -= -1.00 × (Nova Linha 1)
+
+================================================================================
+🔄 Após pivoteamento na linha 1, coluna 2
+📊 QUADRO SIMPLEX - Iteração 2
+================================================================================
+Base |   x1   |   x2   |   s1   |   s2   |    RHS   |
+-----------------------------------------------------
+ x2  |   0.00 |   1.00 |   0.26 |  -0.16 |     2.37 |
+ x1  |   1.00 |   0.00 |  -0.11 |   0.26 |     1.05 |
+-----------------------------------------------------
+  Z   |   0.00 |   0.00 |   0.26 |   0.84 |    12.37 |
+================================================================================
+
+⏸️  Pressione Enter para continuar...
+
+✅ SOLUÇÃO ÓTIMA ENCONTRADA!
+  Todos os coeficientes da linha Z são não-negativos.
+
+📌 FASE 3: EXTRAÇÃO DA SOLUÇÃO
+
+  • Valores das variáveis de decisão:
+    x2 = 2.37 (variável básica)
+    x1 = 1.05 (variável básica)
+
+  • Valor MÁXIMO da função objetivo: Z = 12.37
+
+================================================================================
+🎉 RESUMO DA SOLUÇÃO ÓTIMA
+================================================================================
+Solução ótima: [ x1=1.05, x2=2.37 ]
+Valor Máximo: Z = 12.37
+
+🔍 VERIFICAÇÃO DA SOLUÇÃO (com dados originais):
+  • Verificando restrições (≤):
+    Restrição 1: 15.00 ≤ 15.00 ✓
+    Restrição 2: 10.00 ≤ 10.00 ✓
+  • Verificando não-negatividade:
+    x1 = 1.05 ≥ 0 ✓
+    x2 = 2.37 ≥ 0 ✓
+
+  • Valor da função objetivo com a solução encontrada: Z = 12.37
+
+================================================================================
